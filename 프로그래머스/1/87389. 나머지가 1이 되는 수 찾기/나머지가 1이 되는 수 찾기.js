@@ -5,3 +5,14 @@ function solution(n) {
     }
     return null;
 }
+
+
+//or
+
+function solution(n, x = 1) {    
+    while (x++) {
+        if (n % x === 1) {
+            return x;
+        }
+    }
+}
