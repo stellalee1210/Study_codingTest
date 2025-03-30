@@ -1,4 +1,17 @@
 function solution(arr, n) {
+    const arrLength = arr.length;
+    const left = arrLength%2 ? 0 : 1;
+    
+    for(let i = left; i< arrLength; i+=2){
+        arr[i] += n;
+    }
+    
+    return arr;
+}
+
+
+
+function solution(arr, n) {
     if(arr.length%2){
         arr = arr.map((v,i) => i%2?v:v+n)
     }else{
