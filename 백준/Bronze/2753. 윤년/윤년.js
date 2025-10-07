@@ -1,15 +1,7 @@
-const readline = require('readline');
-const rl = readline.createInterface({
-    input : process.stdin,
-    output:process.stdout
-});
+const fs = require('fs');
+const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
+const input = fs.readFileSync(filePath).toString().trim().split('\n');
 
-rl.on('line',(line)=>{
-    const year = Number(line.trim())
-    console.log((year%4===0 && year%100 !== 0) || year %400 === 0 ? 1 : 0);
-    rl.close();
-})
-
-rl.on('close', ()=>{
-    process.exit();
-})
+// 문제 풀이
+const year = Number(input[0])
+console.log((year%4===0 && year%100 !== 0) || year %400 === 0 ? 1 : 0);
