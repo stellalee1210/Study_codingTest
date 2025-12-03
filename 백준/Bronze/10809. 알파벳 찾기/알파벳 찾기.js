@@ -1,24 +1,14 @@
-const readline = require("readline");
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-const alphabet = new Array(26).fill(-1);
-const pattern = /[a-z]/;
+const fs = require("fs");
+const input = fs.readFileSync(0, "utf-8").trim().split("\n");
 
-rl.on("line", (line) => {
-  /*입력값 처리 코드*/
-  const word = line.trim();
-  for (const letter of word) {
-    if (pattern.test(letter)) {
-      const index = letter.charCodeAt(0) - 97;
-      const value = word.indexOf(letter);
-      alphabet[index] = value;
-    }
+const str = input[0].split("");
+let answer = Array.from({ length: 26 }).fill(-1);
+
+for (let i = 0; i < str.length; i++) {
+  const idx = str[i].charCodeAt() - 97;
+  if (answer[idx] === -1) {
+    answer[idx] = i;
   }
-});
+}
 
-rl.on("close", () => {
-  console.log(alphabet.join(" "));
-  process.exit();
-});
+console.log(answer.join(" "));
