@@ -7,16 +7,18 @@ const numbers = input.map(Number);
 const answers = [];
 
 numbers.forEach(number => {
-    const temp = []
-    for (let i = 0; i < number; i++) {
+    const temp = [1]
+    for (let i = 2; i < Math.sqrt(number); i++) {
         if (number % i === 0) {
             temp.push(i)
+            temp.push(number / i)
         }
     }
 
-    const total = temp.reduce((acc, cur) => acc + cur)
+    const sortedTemp = temp.sort((a, b) => a - b);
+    const total = sortedTemp.reduce((acc, cur) => acc + cur)
     if (total === number) {
-        answers.push(`${number} = ${temp.join(" + ")}`);
+        answers.push(`${number} = ${sortedTemp.join(" + ")}`);
         return;
     }
 
