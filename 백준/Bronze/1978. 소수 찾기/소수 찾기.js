@@ -15,5 +15,5 @@ const divisor = numbers.map(number => {
     return divisorCount > 0 ? 0 : 1;
 })
 
-const answer = divisor.reduce((acc, cur) => acc + cur)
-console.log(answer)
+
+console.log(divisor.reduce(((acc, cur) => acc + cur)))
