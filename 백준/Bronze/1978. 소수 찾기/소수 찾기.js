@@ -1,8 +1,7 @@
 const fs = require("fs");
 const input = fs.readFileSync(0, "utf-8").trim().split("\n");
-const rawNumbers = input[1].split(' ').map(Number).sort((a, b) => a - b);
-const set = new Set(rawNumbers)
-const numbers = [...set]
+const numbers = input[1].split(' ').map(Number).sort((a, b) => a - b);
+
 
 
 const divisor = numbers.map(number => {
