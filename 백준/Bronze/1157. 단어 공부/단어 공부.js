@@ -1,17 +1,18 @@
 const fs = require("fs");
 const input = fs.readFileSync(0, "utf-8").trim().split("\n");
+const words = input[0].split('').map(v => v.toLowerCase());
 
-const word = input[0].toLocaleUpperCase();
-let alphabet = Array.from({ length: 26 }).fill(0);
+const wordCounts = [];
+const set = new Set(words);
+const setValues = [...set.values()];
 
-[...word].forEach((letter) => {
-  const idx = letter.charCodeAt() - 65;
-  alphabet[idx]++;
+setValues.forEach(v => {
+  const count = words.filter(letter => letter === v).length;
+  wordCounts.push([count, v])
 });
 
-const max = Math.max(...alphabet);
-const answer = [];
-for (let i = 0; i < alphabet.length; i++) {
-  if (alphabet[i] === max) answer.push(String.fromCharCode(i + 65));
-}
-console.log(answer.length > 1 ? "?" : answer[0]);
+const sortedWordCounts = wordCounts.sort((a, b) => b[0] - a[0]);
+const answer = sortedWordCounts.filter(v => v[0] === sortedWordCounts[0][0])
+
+
+console.log(answer.length === 1 ? answer[0][1].toUpperCase() : '?')
