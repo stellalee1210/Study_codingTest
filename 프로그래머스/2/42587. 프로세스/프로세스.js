@@ -1,23 +1,21 @@
 function solution(priorities, location) {
-    let answer = -1;
-    let largestP = Math.max(...priorities);
     let trial= 0;
-    const arr = new Array(priorities.length).fill(0).map((v,i)=> v ={ 'priority': priorities[i], 'valid':false});
-    arr[location].valid = true;
-    
+    const sortedPriorities = [...priorities].sort((a,b)=>b-a);
+    const arr = priorities.map((v,i)=> ({ 'priority': priorities[i], 'valid':i===location}));
+
+    let largestP = sortedPriorities.shift()
     while (arr.length !== 0){
         const cur = arr.shift();
         
         if(cur.priority === largestP){
             trial++;
-            largestP = Math.max(...arr.map(v=>v.priority))
+            largestP = sortedPriorities.shift()
             
-            if(cur.valid) answer = trial;
+            if(cur.valid) return trial;
             continue;
         }
         arr.push(cur);
         
     }
-    
-    return answer;
+    return 0;
 }
