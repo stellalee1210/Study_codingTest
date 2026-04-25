@@ -1,14 +1,17 @@
 const fs = require("fs");
 const input = fs.readFileSync(0, "utf-8").trim().split("\n");
-const countOfLevels = Number(input.shift());
+const levelCount = Number(input.shift());
+const levelArray = input.map(Number).reverse();
 
-let levels = input.map(Number).reverse();
+let curLevel = levelArray[0];
 let answer = 0;
-for (let i = 1; i < countOfLevels; i++) {
-    if (levels[i - 1] <= levels[i]) {
-        answer += levels[i] - levels[i - 1] + 1
-        levels[i] = levels[i - 1] - 1;
+for (let i = 1; i < levelCount; i++) {
+    if (curLevel <= levelArray[i]) {
+        curLevel -= 1
+        answer += levelArray[i] - curLevel
+        continue
     }
+    curLevel = levelArray[i]
 }
 
 console.log(answer)
