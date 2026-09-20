@@ -1,17 +1,6 @@
 function solution(a, b) {
-    let sum = 0;
-    let min = Math.min(a,b);
-    let max = Math.max(a,b);
+    const num1 = Number(a);
+    const num2 = Number(b);
     
-    for(let i =min; i<=max; i++) sum+= i;
-    return sum;
-}
-
-
-//or
-
-
-function adder(a, b, s = 0){
-  for (var i = Math.min(a, b); i <= Math.max(a, b); i++) s += i;
-  return s;
+    return (num1 + num2) * (Math.max(num1, num2) - Math.min(num1, num2) + 1) / 2
 }
